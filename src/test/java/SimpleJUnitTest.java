@@ -53,6 +53,8 @@ public class SimpleJUnitTest {
     private int getResult() {
         return 3;
     }
+
 }
+
 
 
