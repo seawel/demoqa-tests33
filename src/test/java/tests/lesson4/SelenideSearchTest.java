@@ -11,11 +11,10 @@ import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.WebDriverConditions.url;
 
-public class SelenideSearch
-{
+public class SelenideSearchTest {
 
 
-      @BeforeAll
+        @BeforeAll
         static void beforeAllConfigurations() {
             Configuration.baseUrl = "https://github.com";
             Configuration.browserSize = "1920x1080";
@@ -46,5 +45,8 @@ public class SelenideSearch
                   }
                 }"""));
         }
+
     }
+
+
 
