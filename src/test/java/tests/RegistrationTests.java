@@ -1,8 +1,11 @@
 package tests;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
+import java.io.File;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
@@ -17,51 +20,46 @@ public class RegistrationTests {
         Configuration.browserSize = "1920x1080";
         Configuration.pageLoadStrategy = "eager";
         Configuration. holdBrowserOpen = true;
-
-
     }
 
     @Test
-    void successfullRegistrtionTest() {
-        String userName = "Alex";
+    void fullRegistrationFormTest() {
 
         open("/automation-practice-form");
-        $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
+        executeJavaScript("$('#fixedban').remove()");
+        executeJavaScript("$('footer').remove()");
 
-        $("#firstName").setValue("userName");
-        $("#lastName").setValue("Egorov");
-        $("#userEmail").setValue("alex@egorov.com");
-//        $("#gender-radio-1").click();                   // wrong
-//        $("#gender-radio-1").parent().click(); // good  чтобы кликнуть поднялись к родителю
-//        $(byText ("Other")).click(); // not very good  чтобы кликнуть по эелменту, но если на разных языках - придется править
-        $( "#genterWrapper").$(byText("Other")).click(); //  best  (читаемый локатор)
-//        $("label[#gender-radio-1"]).click(); // good  чтобы кликнуть поднялись к родителю
-
-
-       $("#userNumber").setValue("1234567890");
-
-        $(".react-datepicker__month").$(byText("15")).click();
-
-        $("#.react-datepicker__month-select").selectOption("July");
-//        $("#.react-datepicker__month-select").selectOption("July");
-//        $(".react-datepicker__month-select").selectOption("July")// менее читаемо
-        $("#.react-datepicker__year-select").selectOption("2008");
-
-        $("#currentAddress").setValue("Some address 1");
-
-
+        $("#firstName").setValue("Joe");
+        $("#lastName").setValue("Jonson");
+        $("#userEmail").setValue("jonson@test.ru");
+        $("#genterWrapper").$(byText("Male")).click();
+        $("#userNumber").setValue("2221777567");
+        $("#dateOfBirthInput").click();
+        $(".react-datepicker__month-select").selectOption("September");
+        $(".react-datepicker__year-select").selectOption("1999");
+        $$(".react-datepicker__day:not(.react-datepicker__day--outside-month)").findBy(Condition.text("8")).click();
+        $("#subjectsInput").setValue("Math").pressEnter();
+        $("#hobbiesWrapper").$(byText("Reading")).click();
+        File file = $("#uploadPicture").uploadFromClasspath("cat.jpeg");
+        $("#currentAddress").setValue("Russia,630777,Moscow,ul.Pobedy,d.19,kv.6");
+        $("#state").click();
+        $("#state").$(byText("Haryana")).click();
+        $("#city").click();
+        $("#city").$(byText("Karnal")).click();
         $("#submit").click();
 
+        $(".table-responsive").shouldHave(Condition.text("Joe Jonson"),
+                (Condition.text("jonson@test.ru")),
+                (Condition.text("Male")),
+                (Condition.text("8 September,1999")),
+                (Condition.text("2221777567")),
+                (Condition.text("Math")),
+                (Condition.text("Reading")),
+                (Condition.text("cat.jpeg")),
+                (Condition.text("Russia,630777,Moscow,ul.Pobedy,d.19,kv.6")),
+                (Condition.text("Haryana Karnal")));
+        $(".modal-footer").$(byText("Close")).click();
 
-
-
-
-
-
-        $("#output #name").shouldHave(text("Alex"));
-
-        $("#output #currentAddress").shouldHave(text("some street 1"));
-        $("#output #permanentAddress").shouldHave(text("Another street "));
     }
 }
 

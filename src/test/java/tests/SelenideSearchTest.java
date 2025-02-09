@@ -1,4 +1,4 @@
-package tests.lesson4;
+package tests;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
@@ -24,6 +24,7 @@ public class SelenideSearchTest {
         @Test
         void enableSoftAssertionTest() {
             open("");
+
             $(".search-input").click();
             $("#query-builder-test").setValue("Selenide").pressEnter();
             $$(".prc-Link-Link-85e08").findBy(Condition.text("selenide/selenide")).click();
