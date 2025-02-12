@@ -15,7 +15,7 @@ public class SelenideSearchTest {
 
 
         @BeforeAll
-        static void beforeAllConfigurations() {
+        static void setUp() {
             Configuration.baseUrl = "https://github.com";
             Configuration.browserSize = "1920x1080";
             Configuration.pageLoadStrategy = "eager";

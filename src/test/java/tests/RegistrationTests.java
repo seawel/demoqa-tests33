@@ -15,11 +15,11 @@ import static com.codeborne.selenide.files.DownloadActions.click;
 public class RegistrationTests {
 
     @BeforeAll
-    static void beforAll() {
+    static void setUp() {
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browserSize = "1920x1080";
         Configuration.pageLoadStrategy = "eager";
-        Configuration. holdBrowserOpen = true;
+       // Configuration. holdBrowserOpen = true;
     }
 
     @Test
@@ -41,7 +41,7 @@ public class RegistrationTests {
         $$(".react-datepicker__day:not(.react-datepicker__day--outside-month)").findBy(Condition.text("8")).click();
         $("#subjectsInput").setValue("Math").pressEnter();
         $("#hobbiesWrapper").$(byText("Reading")).click();
-        File file = $("#uploadPicture").uploadFromClasspath("cat.jpeg");
+        $("#uploadPicture").uploadFromClasspath("cat.jpeg");
         $("#currentAddress").setValue("Russia,630777,Moscow,ul.Pobedy,d.19,kv.6");
         $("#state").click();
         $("#state").$(byText("Haryana")).click();
@@ -49,16 +49,30 @@ public class RegistrationTests {
         $("#city").$(byText("Karnal")).click();
         $("#submit").click();
 
-        $(".table-responsive").shouldHave(Condition.text("Joe Jonson"),
-                (Condition.text("jonson@test.ru")),
-                (Condition.text("Male")),
-                (Condition.text("8 September,1999")),
-                (Condition.text("2221777567")),
-                (Condition.text("Math")),
-                (Condition.text("Reading")),
-                (Condition.text("cat.jpeg")),
-                (Condition.text("Russia,630777,Moscow,ul.Pobedy,d.19,kv.6")),
-                (Condition.text("Haryana Karnal")));
+        $(".table-responsive").shouldHave(Condition.text("Joe Jonson"));
+
+        $(".table-responsive").shouldHave(Condition.text("jonson@test.ru"));
+        $(".table-responsive").shouldHave(Condition.text("Male"));
+        $(".table-responsive").shouldHave(Condition.text("8 September,1999"));
+        $(".table-responsive").shouldHave(Condition.text("2221777567"));
+        $(".table-responsive").shouldHave(Condition.text("Math"));
+        $(".table-responsive").shouldHave(Condition.text("Reading"));
+        $(".table-responsive").shouldHave(Condition.text("cat.jpeg"));
+        $(".table-responsive").shouldHave(Condition.text("Russia,630777,Moscow,ul.Pobedy,d.19,kv.6"));
+        $(".table-responsive").shouldHave(Condition.text("Haryana Karnal"));
+
+
+
+              // (Condition.text("jonson@test.ru")),
+               // (Condition.text("jonson@test.ru")),
+              //  (Condition.text("Male")),
+              //  (Condition.text("8 September,1999")),
+              //  (Condition.text("2221777567")),
+             //   (Condition.text("Math")),
+               // (Condition.text("Reading")),
+            //    (Condition.text("cat.jpeg")),
+               // (Condition.text("Russia,630777,Moscow,ul.Pobedy,d.19,kv.6")),
+               // (Condition.text("Haryana Karnal");
         $(".modal-footer").$(byText("Close")).click();
 
     }
