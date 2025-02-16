@@ -63,16 +63,7 @@ public class RegistrationTests {
 
 
 
-              // (Condition.text("jonson@test.ru")),
-               // (Condition.text("jonson@test.ru")),
-              //  (Condition.text("Male")),
-              //  (Condition.text("8 September,1999")),
-              //  (Condition.text("2221777567")),
-             //   (Condition.text("Math")),
-               // (Condition.text("Reading")),
-            //    (Condition.text("cat.jpeg")),
-               // (Condition.text("Russia,630777,Moscow,ul.Pobedy,d.19,kv.6")),
-               // (Condition.text("Haryana Karnal");
+
         $(".modal-footer").$(byText("Close")).click();
 
     }

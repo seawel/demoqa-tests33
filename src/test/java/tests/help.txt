@@ -1,0 +1,3 @@
+Заморозить элемент:
+ F8
+ Или в консоли setTimeout(function(){debagger},4000)
